@@ -1,0 +1,6 @@
+{
+  "imports": {
+    "lume/": "https://deno.land/x/lume@v1.12.1/",
+    "date-fns": "npm:date-fns"
+  }
+}
