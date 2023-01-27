@@ -3,7 +3,7 @@
   "tasks": {
     "clean": "rm -rf ./_site",
     "lume": "echo \"import 'lume/cli.ts'\" | deno run --unstable -A -",
-    "build": "deno task lume",
+    "build": "MODE=PROD deno task lume",
     "serve": "deno task lume -s"
   },
   "compilerOptions": {
