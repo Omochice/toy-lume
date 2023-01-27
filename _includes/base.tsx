@@ -9,7 +9,7 @@ export default ({ title, children, type }) => (
         <ZennHeader />
         <title>{title}</title>
       </head>
-      <body>{children}</body>
+      <body className="p-10">{children}</body>
     </html>
   </>
 );

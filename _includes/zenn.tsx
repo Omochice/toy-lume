@@ -1,6 +1,6 @@
 import type { ZennPageData } from "plugins/zenn-renderer/mod.ts";
 
-export const layout = "zennArticle.tsx";
+export const layout = "base.tsx";
 
 export default ({ title, children, topics, emoji }: ZennPageData) => (
   <>
