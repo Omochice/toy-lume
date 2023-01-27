@@ -18,8 +18,7 @@ type: "tech"
   - Bonjour!
   * Hi!
 
-![altテキスト](https://storage.googleapis.com/zenn-user-upload/gxnwu3br83nsbqs873uibiy6fd43
-=250x)
+![altテキスト](https://storage.googleapis.com/zenn-user-upload/gxnwu3br83nsbqs873uibiy6fd43 =250x)
 
 ![](https://storage.googleapis.com/zenn-user-upload/gxnwu3br83nsbqs873uibiy6fd43)
 _キャプション_
@@ -34,7 +33,9 @@ $$ e^{-i\pi} $$
 
 行中に$1e^{-i\pi}$がでると
 
-:::message message this is message :::
+:::message
+message this is message 
+:::
 
 https://zenn.dev/zenn/articles/markdown-guide
 
