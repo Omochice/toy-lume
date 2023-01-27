@@ -13,6 +13,11 @@ function comparePage(a: Page, b: Page): number {
   );
 }
 
+function joinURL(to: string): string {
+  const n = new URL(to.replace(/^\//, "./"), site.options.location)
+  return n.href
+}
+
 const BlogPosts = () => {
   const blogPosts = site.pages
     .filter((page: Page) => page.data.type !== undefined)
@@ -30,7 +35,7 @@ const BlogPosts = () => {
                 className="w-3/5 truncate"
               >
                 <a
-                  href={page.data.url}
+                  href={joinURL(page.data.url)}
                   className="text-blue-500 cursor-pointer"
                 >
                   {page.data.title}
