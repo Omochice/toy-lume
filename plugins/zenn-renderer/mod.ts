@@ -1,5 +1,6 @@
-import type { Data, Engine, Helper, Page, Site } from "./deps.ts";
-import { loader, merge } from "./deps.ts";
+import type { Data, Engine, Helper, Page, Site } from "lume/core.ts";
+import { merge } from "lume/core/utils.ts";
+import loader from "lume/core/loaders/text.ts";
 import { markdownToHtml } from "./deps.ts";
 
 export interface Options {
@@ -17,20 +18,20 @@ export class MarkdownEngine implements Engine {
 
   deleteCache() {}
 
-  async render(
-    content: string,
-    _data?: Data,
-    _filename?: string,
-  ): Promise<string> {
-    return await Promise.resolve(markdownToHtml(content));
-  }
-
-  renderSync(
+  render(
     content: string,
     _data?: Data,
     _filename?: string,
   ): string {
     return markdownToHtml(content);
+  }
+
+  renderSync(
+    content: string,
+    data?: Data,
+    filename?: string,
+  ): string {
+    return this.render(content, data, filename);
   }
 
   addHelper() {}
