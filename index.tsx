@@ -1,32 +1,21 @@
-import site from "././_config.ts";
+import site from "./_config.ts";
 import type { Data, Page } from "lume/core.ts";
-import { compareDesc, fromUnixTime } from "date-fns";
 import { SharedHead } from "./_includes/components/sharedHead.tsx";
+import { getPosts } from "./posts.ts";
 
 export const layout = "base.tsx";
 
-function comparePage(a: Page, b: Page): number {
-  const defaultCreated = fromUnixTime(0);
-  return compareDesc(
-    a.src?.created ?? defaultCreated,
-    b.src?.created ?? defaultCreated,
-  );
-}
-
 function joinURL(to: string): string {
-  const n = new URL(to.replace(/^\//, "./"), site.options.location)
-  return n.href
+  const n = new URL(to.replace(/^\//, "./"), site.options.location);
+  return n.href;
 }
 
-const BlogPosts = () => {
-  const blogPosts = site.pages
-    .filter((page: Page) => page.data.type !== undefined)
-    .sort(comparePage);
-
+type Props = { posts: Page[] };
+export const BlogPosts = ({ posts }: Props) => {
   return (
     <>
       <ul className="leading-relaxed">
-        {blogPosts.map((page) => (
+        {posts.map((page) => (
           <li key={page.data.title}>
             <div className="flex">
               <div
@@ -43,8 +32,15 @@ const BlogPosts = () => {
               </div>
 
               <div name="page-metadata" className="flex gap-1">
-                {(page.data.topics ?? []).filter(e => e.length !== 0).map((topic: string) => (
-                  <a className="bg-gray-300 rounded px-2 font-mono h-11/12 cursor-pointer">{topic.toLowerCase()}</a>
+                {(page.data.topics ?? []).filter((e) => e.length !== 0).map((
+                  topic: string,
+                ) => (
+                  <a
+                    className="bg-gray-300 rounded px-2 font-mono h-11/12 cursor-pointer"
+                    href={joinURL(`/tag/${topic.toLowerCase()}`)}
+                  >
+                    {topic.toLowerCase()}
+                  </a>
                 ))}
               </div>
             </div>
@@ -56,10 +52,13 @@ const BlogPosts = () => {
 };
 
 export default (_data: Data) => {
+  const blogPosts = getPosts();
   return (
     <>
-      <h1 className="text-6xl leading-normal">Recent posts</h1>
-      <BlogPosts />
+      <h1 className="text-6xl leading-normal">
+        Recent posts
+      </h1>
+      <BlogPosts posts={blogPosts} />
     </>
   );
 };
